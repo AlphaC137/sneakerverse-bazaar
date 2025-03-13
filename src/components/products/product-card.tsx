@@ -34,7 +34,7 @@ export function ProductCard({
   
   return (
     <div className={cn(
-      "group relative overflow-hidden bg-background hover-lift",
+      "group relative overflow-hidden bg-white hover-lift",
       variants[variant],
       className
     )}>
@@ -50,7 +50,7 @@ export function ProductCard({
             <Button
               variant="secondary"
               size="icon"
-              className="rounded-full bg-background/80 backdrop-blur-sm"
+              className="rounded-full bg-white/80 backdrop-blur-sm hover:bg-black hover:text-white"
               asChild
             >
               <Link to={`/products/${id}`}>
@@ -62,7 +62,7 @@ export function ProductCard({
             <Button
               variant="secondary"
               size="icon"
-              className="rounded-full bg-background/80 backdrop-blur-sm"
+              className="rounded-full bg-white/80 backdrop-blur-sm hover:bg-black hover:text-white"
               asChild
             >
               <Link to={`/products/${id}`}>
@@ -74,7 +74,7 @@ export function ProductCard({
         )}
         
         {discountedPrice && (
-          <div className="absolute top-2 left-2 bg-primary text-primary-foreground text-xs px-2 py-1 rounded font-medium animate-fade-in">
+          <div className="absolute top-2 left-2 bg-[#f30202] text-white text-xs px-2 py-1 rounded font-bold animate-fade-in">
             Sale
           </div>
         )}
@@ -86,7 +86,7 @@ export function ProductCard({
       )}>
         <Link 
           to={`/products/${id}`}
-          className="font-medium hover:underline"
+          className="font-bold hover:underline"
         >
           {name}
         </Link>
