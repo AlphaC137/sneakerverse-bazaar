@@ -13,7 +13,7 @@ export const products: Product[] = [
     ],
     colors: ["Black/White", "Blue/Grey", "Red/Black"],
     tags: ["Running", "Latest", "Featured"],
-    sizes: ["US 7", "US 8", "US 9", "US 10", "US 11", "US 12"],
+    sizes: ["UK 6", "UK 7", "UK 8", "UK 9", "UK 10", "UK 11"],
     featured: true,
   },
   {
@@ -27,7 +27,7 @@ export const products: Product[] = [
     ],
     colors: ["White/Black", "Blue/White", "Black/Gold"],
     tags: ["Basketball", "Latest"],
-    sizes: ["US 8", "US 9", "US 10", "US 11", "US 12", "US 13"],
+    sizes: ["UK 7", "UK 8", "UK 9", "UK 10", "UK 11", "UK 12"],
     featured: true,
   },
   {
@@ -42,7 +42,7 @@ export const products: Product[] = [
     ],
     colors: ["White", "Black", "Grey"],
     tags: ["Lifestyle", "Sale"],
-    sizes: ["US 7", "US 8", "US 9", "US 10", "US 11"],
+    sizes: ["UK 6", "UK 7", "UK 8", "UK 9", "UK 10"],
     featured: false,
   },
   {
@@ -56,7 +56,7 @@ export const products: Product[] = [
     ],
     colors: ["Brown/Green", "Grey/Blue", "Black/Orange"],
     tags: ["Hiking", "Outdoor"],
-    sizes: ["US 8", "US 9", "US 10", "US 11", "US 12"],
+    sizes: ["UK 7", "UK 8", "UK 9", "UK 10", "UK 11"],
     featured: false,
   },
   {
@@ -70,7 +70,7 @@ export const products: Product[] = [
     ],
     colors: ["Black/Red", "Grey/Lime", "Navy/White"],
     tags: ["Training", "Fitness"],
-    sizes: ["US 7", "US 8", "US 9", "US 10", "US 11", "US 12"],
+    sizes: ["UK 6", "UK 7", "UK 8", "UK 9", "UK 10", "UK 11"],
     featured: true,
   },
   {
@@ -85,7 +85,7 @@ export const products: Product[] = [
     ],
     colors: ["White/Navy", "White/Red", "Grey/White"],
     tags: ["Lifestyle", "Retro", "Sale"],
-    sizes: ["US 7", "US 8", "US 9", "US 10", "US 11"],
+    sizes: ["UK 6", "UK 7", "UK 8", "UK 9", "UK 10"],
     featured: false,
   },
   {
@@ -99,7 +99,7 @@ export const products: Product[] = [
     ],
     colors: ["Neon Green/Black", "Orange/White", "Black/Silver"],
     tags: ["Running", "Performance"],
-    sizes: ["US 7", "US 8", "US 9", "US 10", "US 11", "US 12"],
+    sizes: ["UK 6", "UK 7", "UK 8", "UK 9", "UK 10", "UK 11"],
     featured: true,
   },
   {
@@ -113,7 +113,7 @@ export const products: Product[] = [
     ],
     colors: ["Black", "Grey", "Navy"],
     tags: ["Lifestyle", "Casual"],
-    sizes: ["US 7", "US 8", "US 9", "US 10", "US 11"],
+    sizes: ["UK 6", "UK 7", "UK 8", "UK 9", "UK 10"],
     featured: false,
   },
 ];
