@@ -10,7 +10,7 @@ interface PriceTagProps extends React.HTMLAttributes<HTMLDivElement> {
 
 export function PriceTag({
   price,
-  currency = "$",
+  currency = "R",
   size = "default",
   discountedPrice,
   className,
@@ -22,7 +22,7 @@ export function PriceTag({
     lg: "text-lg font-medium",
   };
 
-  const formatter = new Intl.NumberFormat("en-US", {
+  const formatter = new Intl.NumberFormat("en-ZA", {
     style: "decimal",
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
