@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
@@ -181,9 +180,9 @@ const Shop = () => {
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="all">All prices</SelectItem>
-                      <SelectItem value="under100">Under $100</SelectItem>
-                      <SelectItem value="100to200">$100 - $200</SelectItem>
-                      <SelectItem value="over200">Over $200</SelectItem>
+                      <SelectItem value="under100">Under R100</SelectItem>
+                      <SelectItem value="100to200">R100 - R200</SelectItem>
+                      <SelectItem value="over200">Over R200</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -246,9 +245,9 @@ const Shop = () => {
                       <div className="space-y-2 pt-1">
                         {[
                           { value: "all", label: "All prices" },
-                          { value: "under100", label: "Under $100" },
-                          { value: "100to200", label: "$100 - $200" },
-                          { value: "over200", label: "Over $200" },
+                          { value: "under100", label: "Under R100" },
+                          { value: "100to200", label: "R100 - R200" },
+                          { value: "over200", label: "Over R200" },
                         ].map(option => (
                           <div key={option.value} className="flex items-center space-x-2">
                             <Checkbox 

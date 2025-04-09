@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { ShoppingBag } from "lucide-react";
 import { Product } from "@/types";
 import { WishlistButton } from "@/components/products/wishlist-button";
+import { PriceTag } from "@/components/ui/price-tag";
 
 interface ProductCardProps {
   product: Product;
@@ -45,14 +46,10 @@ export function ProductCard({ product }: ProductCardProps) {
         </Link>
         
         <div className="flex items-center gap-2">
-          {discountedPrice ? (
-            <>
-              <p className="font-medium">R{discountedPrice.toFixed(2)}</p>
-              <p className="text-sm text-muted-foreground line-through">R{price.toFixed(2)}</p>
-            </>
-          ) : (
-            <p className="font-medium">R{price.toFixed(2)}</p>
-          )}
+          <PriceTag 
+            price={price} 
+            discountedPrice={discountedPrice}
+          />
         </div>
         
         <div className="flex justify-between items-center gap-2 pt-2">
