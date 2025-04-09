@@ -18,6 +18,8 @@ interface CartState {
   removeItem: (id: string, size: string) => void;
   updateQuantity: (id: string, size: string, quantity: number) => void;
   clearCart: () => void;
+  subtotal: number;
+  totalPrice: number;
 }
 
 export const useCart = create<CartState>()(
@@ -82,6 +84,19 @@ export const useCart = create<CartState>()(
           title: "Cart Cleared",
           description: "All items have been removed from your cart",
         });
+      },
+      
+      get subtotal() {
+        return get().items.reduce(
+          (total, item) => total + item.price * item.quantity, 
+          0
+        );
+      },
+      
+      get totalPrice() {
+        const subtotal = get().subtotal;
+        // Add shipping cost if subtotal is less than 1000
+        return subtotal + (subtotal > 1000 ? 0 : 100);
       },
     }),
     {

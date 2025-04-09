@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
@@ -45,7 +44,6 @@ export default function Checkout() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showLoginDialog, setShowLoginDialog] = useState(false);
   
-  // If cart is empty, redirect to cart page
   if (items.length === 0) {
     navigate("/cart");
     return null;
@@ -70,14 +68,11 @@ export default function Checkout() {
     setIsSubmitting(true);
     
     try {
-      // Simulate payment processing
       await new Promise(resolve => setTimeout(resolve, 1500));
       
-      // Generate random order number
       const orderNumber = `ORD-${Math.floor(Math.random() * 1000000)}`;
       const orderDate = new Date().toISOString();
       
-      // Clear cart and navigate to success page
       clearCart();
       
       navigate("/order-confirmation", {
@@ -114,7 +109,6 @@ export default function Checkout() {
           <h1 className="text-3xl font-bold mb-8">Checkout</h1>
           
           <div className="flex flex-col lg:flex-row gap-8">
-            {/* Shipping Information */}
             <div className="flex-1 order-2 lg:order-1">
               <div className="bg-white p-6 rounded-lg border">
                 <h2 className="text-xl font-semibold mb-4">Shipping Information</h2>
@@ -135,7 +129,6 @@ export default function Checkout() {
                       open={showLoginDialog}
                       onOpenChange={setShowLoginDialog}
                       onSuccess={() => {
-                        // Reset form with user data when logged in
                         if (user) {
                           form.setValue("firstName", user.firstName);
                           form.setValue("lastName", user.lastName);
@@ -288,7 +281,6 @@ export default function Checkout() {
                         All transactions are secure and encrypted. Credit card information is never stored.
                       </p>
                       
-                      {/* Simulated payment form */}
                       <div className="space-y-4 mb-8">
                         <div>
                           <label htmlFor="card-number" className="text-sm font-medium block mb-2">
@@ -339,7 +331,6 @@ export default function Checkout() {
               </div>
             </div>
             
-            {/* Order Summary */}
             <div className="lg:w-96 order-1 lg:order-2">
               <div className="bg-white p-6 rounded-lg border sticky top-24">
                 <h2 className="text-xl font-semibold mb-4">Order Summary</h2>
@@ -349,7 +340,7 @@ export default function Checkout() {
                     <div key={`${item.id}-${item.size}`} className="flex gap-3">
                       <div className="h-16 w-16 bg-muted rounded flex-shrink-0 overflow-hidden">
                         <img 
-                          src={item.images[0]} 
+                          src={item.image} 
                           alt={item.name} 
                           className="h-full w-full object-cover"
                         />

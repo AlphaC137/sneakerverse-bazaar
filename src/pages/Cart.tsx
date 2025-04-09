@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Header } from "@/components/layout/header";
@@ -11,17 +10,11 @@ import { useCart, CartItem } from "@/hooks/use-cart";
 import { PriceTag } from "@/components/ui/price-tag";
 
 const Cart = () => {
-  const { items, removeItem, updateQuantity, clearCart } = useCart();
+  const { items, removeItem, updateQuantity, clearCart, subtotal, totalPrice } = useCart();
   const [isProcessing, setIsProcessing] = useState(false);
   const navigate = useNavigate();
   
-  const subtotal = items.reduce(
-    (total, item) => total + item.price * item.quantity, 
-    0
-  );
-  
-  const shipping = subtotal > 100 ? 0 : 15;
-  const total = subtotal + shipping;
+  const shipping = subtotal > 1000 ? 0 : 100;
   
   const handleQuantityChange = (item: CartItem, change: number) => {
     const newQuantity = item.quantity + change;
@@ -156,13 +149,13 @@ const Cart = () => {
                     
                     <div className="flex justify-between font-medium text-base pt-2">
                       <span>Total</span>
-                      <PriceTag price={total} size="lg" />
+                      <PriceTag price={totalPrice} size="lg" />
                     </div>
                   </div>
                   
-                  {shipping > 0 && (
+                  {subtotal > 0 && subtotal < 1000 && (
                     <p className="text-xs text-muted-foreground mt-4">
-                      Add R{(100 - subtotal).toFixed(2)} more for free shipping
+                      Add R{(1000 - subtotal).toFixed(2)} more for free shipping
                     </p>
                   )}
                   
