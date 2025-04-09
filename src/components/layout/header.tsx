@@ -3,8 +3,9 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { ShoppingBag, Menu, X, User } from "lucide-react";
+import { ShoppingBag, Menu, X, User, Heart } from "lucide-react";
 import { useCart } from "@/hooks/use-cart";
+import { useWishlist } from "@/hooks/use-wishlist";
 import { useAuth } from "@/contexts/auth-context";
 import { UserNav } from "@/components/auth/user-nav";
 
@@ -12,6 +13,7 @@ export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { items } = useCart();
+  const { items: wishlistItems } = useWishlist();
   const { isAuthenticated } = useAuth();
   
   useEffect(() => {
@@ -84,6 +86,22 @@ export function Header() {
               </Link>
             </Button>
           )}
+
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            asChild
+            className="relative"
+          >
+            <Link to="/wishlist">
+              <Heart className="h-5 w-5" />
+              {wishlistItems.length > 0 && (
+                <span className="absolute -top-1 -right-1 flex items-center justify-center w-4 h-4 text-[10px] font-semibold rounded-full bg-primary text-primary-foreground animate-fade-in">
+                  {wishlistItems.length}
+                </span>
+              )}
+            </Link>
+          </Button>
           
           <Button 
             variant="ghost" 

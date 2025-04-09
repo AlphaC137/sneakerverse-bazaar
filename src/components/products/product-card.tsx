@@ -1,101 +1,69 @@
 
 import { Link } from "react-router-dom";
 import { ImageLazy } from "@/components/ui/image-lazy";
-import { PriceTag } from "@/components/ui/price-tag";
 import { Button } from "@/components/ui/button";
-import { Eye, ShoppingBag } from "lucide-react";
+import { ShoppingBag } from "lucide-react";
 import { Product } from "@/types";
-import { cn } from "@/lib/utils";
+import { WishlistButton } from "@/components/products/wishlist-button";
 
 interface ProductCardProps {
   product: Product;
-  className?: string;
-  variant?: "default" | "horizontal" | "minimal";
 }
 
-export function ProductCard({ 
-  product, 
-  className, 
-  variant = "default",
-}: ProductCardProps) {
+export function ProductCard({ product }: ProductCardProps) {
   const { id, name, price, discountedPrice, images } = product;
   
-  const variants = {
-    default: "flex flex-col",
-    horizontal: "grid grid-cols-[120px_1fr] md:grid-cols-[180px_1fr] gap-4",
-    minimal: "flex flex-col",
-  };
-  
-  const imageVariants = {
-    default: "aspect-[3/4] rounded-lg",
-    horizontal: "aspect-square rounded-lg w-full",
-    minimal: "aspect-square rounded-lg",
-  };
-  
   return (
-    <div className={cn(
-      "group relative overflow-hidden bg-white hover-lift",
-      variants[variant],
-      className
-    )}>
-      <div className="relative">
+    <div className="group relative flex flex-col">
+      <Link to={`/products/${id}`} className="relative aspect-square w-full overflow-hidden rounded-lg">
         <ImageLazy
           src={images[0]}
           alt={name}
-          className={cn(imageVariants[variant])}
+          className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
         />
         
-        {variant !== "minimal" && (
-          <div className="absolute inset-0 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-            <Button
-              variant="secondary"
-              size="icon"
-              className="rounded-full bg-white/80 backdrop-blur-sm hover:bg-black hover:text-white"
-              asChild
-            >
-              <Link to={`/products/${id}`}>
-                <Eye className="h-4 w-4" />
-                <span className="sr-only">View product</span>
-              </Link>
-            </Button>
-            
-            <Button
-              variant="secondary"
-              size="icon"
-              className="rounded-full bg-white/80 backdrop-blur-sm hover:bg-black hover:text-white"
-              asChild
-            >
-              <Link to={`/products/${id}`}>
-                <ShoppingBag className="h-4 w-4" />
-                <span className="sr-only">Add to cart</span>
-              </Link>
-            </Button>
-          </div>
-        )}
-        
         {discountedPrice && (
-          <div className="absolute top-2 left-2 bg-[#f30202] text-white text-xs px-2 py-1 rounded font-bold animate-fade-in">
+          <div className="absolute top-2 left-2 bg-red-600 text-white text-xs font-medium px-2 py-1 rounded">
             Sale
           </div>
         )}
-      </div>
+        
+        <div className="absolute top-2 right-2 z-10">
+          <WishlistButton 
+            productId={id}
+            productName={name}
+            productPrice={discountedPrice || price}
+            productImage={images[0]}
+            className="bg-white hover:bg-white/90"
+          />
+        </div>
+      </Link>
       
-      <div className={cn(
-        "flex flex-col",
-        variant === "horizontal" ? "py-2" : "mt-3"
-      )}>
-        <Link 
-          to={`/products/${id}`}
-          className="font-bold hover:underline"
-        >
-          {name}
+      <div className="mt-4 space-y-2">
+        <Link to={`/products/${id}`} className="block">
+          <h3 className="font-medium leading-tight">{name}</h3>
         </Link>
         
-        <PriceTag
-          price={price}
-          discountedPrice={discountedPrice}
-          className="mt-1"
-        />
+        <div className="flex items-center gap-2">
+          {discountedPrice ? (
+            <>
+              <p className="font-medium">R{discountedPrice.toFixed(2)}</p>
+              <p className="text-sm text-muted-foreground line-through">R{price.toFixed(2)}</p>
+            </>
+          ) : (
+            <p className="font-medium">R{price.toFixed(2)}</p>
+          )}
+        </div>
+        
+        <div className="flex justify-between items-center gap-2 pt-2">
+          <Link to={`/products/${id}`} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            View details
+          </Link>
+          
+          <Button variant="outline" size="icon">
+            <ShoppingBag className="h-[18px] w-[18px]" />
+          </Button>
+        </div>
       </div>
     </div>
   );

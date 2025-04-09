@@ -12,6 +12,8 @@ import ProductDetail from "./pages/ProductDetail";
 import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
 import OrderConfirmation from "./pages/OrderConfirmation";
+import Wishlist from "./pages/Wishlist";
+import OrderHistory from "./pages/OrderHistory";
 import About from "./pages/About";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -40,6 +42,12 @@ const App = () => (
             <Route path="/order-confirmation" element={
               <ProtectedRoute>
                 <OrderConfirmation />
+              </ProtectedRoute>
+            } />
+            <Route path="/wishlist" element={<Wishlist />} />
+            <Route path="/order-history" element={
+              <ProtectedRoute>
+                <OrderHistory />
               </ProtectedRoute>
             } />
             <Route path="/about" element={<About />} />
