@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { Button } from "@/components/ui/button";
@@ -13,6 +13,7 @@ import { PriceTag } from "@/components/ui/price-tag";
 const Cart = () => {
   const { items, removeItem, updateQuantity, clearCart } = useCart();
   const [isProcessing, setIsProcessing] = useState(false);
+  const navigate = useNavigate();
   
   const subtotal = items.reduce(
     (total, item) => total + item.price * item.quantity, 
@@ -30,14 +31,7 @@ const Cart = () => {
   };
   
   const handleCheckout = () => {
-    setIsProcessing(true);
-    
-    // Simulate checkout process
-    setTimeout(() => {
-      clearCart();
-      setIsProcessing(false);
-      // Navigate to confirmation page (in a real app)
-    }, 2000);
+    navigate("/checkout");
   };
   
   return (
@@ -168,7 +162,7 @@ const Cart = () => {
                   
                   {shipping > 0 && (
                     <p className="text-xs text-muted-foreground mt-4">
-                      Add ${(100 - subtotal).toFixed(2)} more for free shipping
+                      Add R{(100 - subtotal).toFixed(2)} more for free shipping
                     </p>
                   )}
                   
@@ -176,16 +170,9 @@ const Cart = () => {
                     className="w-full mt-6"
                     size="lg"
                     onClick={handleCheckout}
-                    disabled={isProcessing}
                   >
-                    {isProcessing ? (
-                      <>Processing...</>
-                    ) : (
-                      <>
-                        Checkout
-                        <ArrowRight className="ml-2 h-4 w-4" />
-                      </>
-                    )}
+                    Checkout
+                    <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                   
                   <div className="mt-6 text-xs text-muted-foreground text-center">
